@@ -1,7 +1,6 @@
 
 import './App.css'
-
-import CountDown from './backend/CountDown.jsx'
+import CountDown from './backend/components/CountDown'
 
 function App() {
 
