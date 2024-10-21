@@ -1,7 +1,9 @@
-export default function LoadingScreen({ onLogoClick }) {
+import React from 'react';
+
+export default function LoadingScreen({ img, onLogoClick }) {
     return (
-        <div className="loading-screen">
-            <h1>Timer</h1>
+        <div className="loading__screen" onClick={ onLogoClick }>
+            <img src={img} alt="logo" className="loading__screen-logo" />
             </div>
     )
 }

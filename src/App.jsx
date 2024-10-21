@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 import './App.css'
+import img from './img/logotyp.png'
+
 import SetTimer from './backend/components/setTimer'
 import LoadingScreen from './backend/components/loadingScreen'
 import CountDown from './backend/components/CountDown'
@@ -24,7 +26,11 @@ function App() {
       <div className="View__iphone">
         <div className="View__iphone-screen">
           <div className="View__iphone-top"></div>
-      {currentView === 'loadingScreen' && <LoadingScreen onLogoClick={handleLogoClick} />}
+          <div className="Background__circle1"></div>
+          <div className="Background__circle2"></div>
+          <div className="Background__circle3"></div>
+          <div className="Background__circle4"></div>
+      {currentView === 'loadingScreen' && <LoadingScreen img={img} onLogoClick={handleLogoClick} />}
       {currentView === 'setTimer' && <SetTimer onStart={handleStartTimer} />}
       {currentView === 'countDown' && <CountDown {...timerProps} />}
       <div className="View__iphone-bottom"></div>
