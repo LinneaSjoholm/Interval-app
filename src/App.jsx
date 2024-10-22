@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 
 import './App.css'
 import './frontend/setTimer.css'
+import './frontend/countDown.css'
 import img from './img/logotyp.png'
 
 import SetTimer from './backend/components/setTimer'
