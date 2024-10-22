@@ -1,13 +1,27 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import timer from 'easytimer.js';
 
 export default function SetTimer( { onStart }) {
-
+    const timeRef = useRef(new timer());
     const navigate = useNavigate();
 
-    const [minutes, setMinutes] = useState(25);
+    const [minutes, setMinutes] = useState(0);
     const [isInterval, setIsInterval] = useState(false);
-    const [pauseDuration, setPauseDuration] = useState(5);
+    const [pauseDuration, setPauseDuration] = useState(1);
+
+    useEffect(() => {
+        const timer = timeRef.current;
+        timer.addEventListener('secondsUpdated', () => {
+            console.log(timer.getTimeValues().toString());
+        });
+
+        return () => {
+            timer.stop();
+        };
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,32 +39,80 @@ export default function SetTimer( { onStart }) {
         return;
     }
 
+    timeRef.current.start({countdown: true, startValues: {minutes: parsedMinutes}});
+
+    if(isInterval) {
+        setTimeout(() => {
+            timeRef.current.pause();
+            setTimeout(() => {
+                timeRef.current.start();
+            }, parsedPauseDuration * 1000); 
+        }, parsedMinutes * 1000);
+    };
+    
     onStart(parsedMinutes * 60, isInterval, parsedPauseDuration);
     navigate('/countdown');
 
 };
 
-    return (
-        <form onSubmit= {handleSubmit} >
-            <label htmlFor="minutes">
-                <span>Minutes:</span>
-                <input type="number" value={minutes} onChange={(e) => setMinutes(e.target.value)} />
-            </label>
-            <label htmlFor="interval">
-                <span>Interval:</span>
-                <input type="checkbox" checked={isInterval} onChange={() => setIsInterval(!isInterval)} />
-            </label>
+const increaseMinutes = () => {
+    setMinutes((prev) => prev + 1);
+};
 
-            {isInterval && (
-                <label htmlFor="pause">
-                    <span>Pause duration:</span>
-                    <input type="number" value={pauseDuration} onChange={(e) => setPauseDuration(e.target.value)} 
-                    min="1"
-                    />
-                </label>
-            )};
+const decreaseMinutes = () => {
+    setMinutes((prev) => prev > 1 ? prev - 1 : 1);
+};
 
-            <button type="submit">Start</button>
-        </form>
-    )
+const increasePauseDuration = () => {
+    setPauseDuration((prev) => prev + 1);
+};
+
+const decreasePauseDuration = () => {
+    setPauseDuration((prev) => prev > 1 ? prev - 1 : 1);
 }
+
+    return (
+        <form onSubmit= {handleSubmit}>
+            <div className="input__container">
+            <label htmlFor="minutes">
+                <span className="input__container-minutes">Minutes</span><br></br>
+                <button type="button" onClick={decreaseMinutes}>
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                </button>
+                <span>{minutes}</span>
+                <button type="button" onClick={increaseMinutes}>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </button>
+            </label>
+            </div>
+
+            <div className="input__container">
+            <label htmlFor="interval">
+                <span className="input__container-interval">Interval</span><br></br>
+                <input 
+                type="checkbox" 
+                checked={isInterval} 
+                onChange={() => setIsInterval(!isInterval)} 
+                className="custom-checkbox"
+                />
+            </label>
+            </div>
+
+                <div className={`input__container ${isInterval ? 'input__container-visible' : 'input__container-hidden'}`}>
+                <label htmlFor="pause">
+                    <span className="input__container-pause">Pause duration</span><br></br>
+                    <button type="button" onClick={decreasePauseDuration}>
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                    </button>
+                    <span>{pauseDuration}</span>
+                    <button type="button" onClick={increasePauseDuration}>
+                        <FontAwesomeIcon icon={faChevronRight} />
+                    </button>
+                </label>
+                </div>
+            <div className="button__container">
+            <button className="input__container-submitbtn" type="submit">Start</button>
+            </div>
+        </form>
+    );
+};
