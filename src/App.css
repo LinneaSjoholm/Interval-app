@@ -53,7 +53,7 @@
 .Background__circle2 {
 width: 320px;
 height: 320px;
-background-color: rgba(102, 102, 102, 0.212);
+background-color: rgba(255, 64, 0, 0.341);
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
@@ -62,7 +62,7 @@ transform: translate(-50%, -50%);
 .Background__circle3 {
   width: 290px;
   height: 290px;
-  background-color: rgba(126, 126, 126, 0.212);
+  background-color: rgba(255, 64, 0, 0.341);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -71,7 +71,7 @@ transform: translate(-50%, -50%);
 .Background__circle4 {
   width: 250px;
   height: 250px;
-  background-color: rgba(167, 166, 166, 0.137);
+  background-color: rgba(63, 63, 63, 0.685);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
