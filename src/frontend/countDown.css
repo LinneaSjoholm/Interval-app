@@ -29,3 +29,15 @@
     opacity: 1;
     transition: opacity 0.1s ease;
 }
+
+.start__container-hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.start__container-visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.1s ease;
+}

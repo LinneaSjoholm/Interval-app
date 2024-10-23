@@ -10,7 +10,7 @@ export default function SetTimer( { onStart }) {
 
     const [minutes, setMinutes] = useState(0);
     const [isInterval, setIsInterval] = useState(false);
-    const [pauseDuration, setPauseDuration] = useState(1);
+    const [pauseDuration, setPauseDuration] = useState(0);
 
     useEffect(() => {
         const timer = timeRef.current;
@@ -39,7 +39,9 @@ export default function SetTimer( { onStart }) {
         return;
     }
 
-    timeRef.current.start({countdown: true, startValues: {minutes: parsedMinutes}});
+    const totalSeconds = parsedMinutes * 60;
+
+    timeRef.current.start({countdown: true, startValues: {seconds: totalSeconds}});
 
     if(isInterval) {
         setTimeout(() => {
@@ -47,10 +49,10 @@ export default function SetTimer( { onStart }) {
             setTimeout(() => {
                 timeRef.current.start();
             }, parsedPauseDuration * 1000); 
-        }, parsedMinutes * 1000);
+        }, totalSeconds * 1000);
     };
     
-    onStart(parsedMinutes * 60, isInterval, parsedPauseDuration);
+    onStart(totalSeconds, isInterval, parsedPauseDuration);
     navigate('/countdown');
 
 };
