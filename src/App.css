@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  color: white;
 }
 
 .View {
@@ -53,7 +54,7 @@
 .Background__circle2 {
 width: 320px;
 height: 320px;
-background-color: rgba(255, 64, 0, 0.341);
+background-color: rgba(187, 187, 187, 0.341);
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
@@ -62,7 +63,7 @@ transform: translate(-50%, -50%);
 .Background__circle3 {
   width: 290px;
   height: 290px;
-  background-color: rgba(255, 64, 0, 0.341);
+  background-color: rgba(156, 156, 156, 0.341);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

@@ -53,7 +53,7 @@ export default function CountDown({ seconds, isInterval, pauseDuration}) {
               timer.current.removeEventListener('targetAchieved', handleTargetAchieved);
               timer.current.stop();
             };
-    }, [ seconds, isPaused, intervalPaused, alertShown, isInterval, pauseDuration ]);
+    }, [ seconds, isInterval, pauseDuration, alertShown ]);
 
     const handleReset = () => {
       timer.current.stop();
@@ -70,7 +70,7 @@ export default function CountDown({ seconds, isInterval, pauseDuration}) {
       setIsPaused(false);
     }
 
-    const togglePaus = () => {
+    const togglePause = () => {
       if (isPaused) {
         timer.current.start();
         setIsPaused(false);
@@ -95,7 +95,7 @@ export default function CountDown({ seconds, isInterval, pauseDuration}) {
         {!isReset && (
           <>
           <button className="countDown__timer-abort-n-reset-btn" onClick={handleReset}>Abort timer and reset</button>
-          <button className="countDown__timer-resume-n-pause-btn" onClick={togglePaus}>{isPaused ? "Resume" : "Pause"}</button>
+          <button className="countDown__timer-resume-n-pause-btn" onClick={togglePause}>{isPaused ? "Resume" : "Pause"}</button>
           </>
         )}
 

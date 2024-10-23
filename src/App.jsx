@@ -4,11 +4,14 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-route
 import './App.css'
 import './frontend/setTimer.css'
 import './frontend/countDown.css'
+import './frontend/sideMenu.css'
 import img from './img/logotyp.png'
 
 import SetTimer from './backend/components/setTimer'
 import LoadingScreen from './backend/components/loadingScreen'
-import CountDown from './backend/components/CountDown'
+import CountDown from './backend/components/countDown'
+import pauseView from './backend/components/pauseView'
+import endView from './backend/components/endView'
 
 function App() {
   const [ timerProps, setTimerProps ] = useState({});
@@ -18,6 +21,7 @@ function App() {
   };
 
   return (
+
     <Router>
     <div className="View">
       <div className="View__iphone">
@@ -32,6 +36,8 @@ function App() {
         <Route path="/" element={<LoadingScreen img={img} />} />
         <Route path="/set-timer" element={<SetTimer onStart={handleStartTimer} />} />
         <Route path="/countdown" element={<CountDown {...timerProps} />} />
+        <Route path="/pause" element={<pauseView />} />
+        <Route path="/end" element={<endView />} />
       </Routes>
 
       <div className="View__iphone-bottom"></div>

@@ -11,17 +11,28 @@ export default function SetTimer( { onStart }) {
     const [minutes, setMinutes] = useState(0);
     const [isInterval, setIsInterval] = useState(false);
     const [pauseDuration, setPauseDuration] = useState(0);
+    const [isTimerRunning, setIsTimerRunning] = useState(false);
 
     useEffect(() => {
         const timer = timeRef.current;
+
         timer.addEventListener('secondsUpdated', () => {
             console.log(timer.getTimeValues().toString());
+        });
+
+        timer.addEventListener('targetAchieved', () => {
+            setIsTimerRunning(false);
+            if(isInterval) {
+                navigate('/pause');
+            } else {
+                navigate('/end');
+            }
         });
 
         return () => {
             timer.stop();
         };
-    }, []);
+    }, [isInterval, pauseDuration]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,16 +53,7 @@ export default function SetTimer( { onStart }) {
     const totalSeconds = parsedMinutes * 60;
 
     timeRef.current.start({countdown: true, startValues: {seconds: totalSeconds}});
-
-    if(isInterval) {
-        setTimeout(() => {
-            timeRef.current.pause();
-            setTimeout(() => {
-                timeRef.current.start();
-            }, parsedPauseDuration * 1000); 
-        }, totalSeconds * 1000);
-    };
-    
+    setIsTimerRunning(true);
     onStart(totalSeconds, isInterval, parsedPauseDuration);
     navigate('/countdown');
 
@@ -102,7 +104,7 @@ const decreasePauseDuration = () => {
 
                 <div className={`input__container ${isInterval ? 'input__container-visible' : 'input__container-hidden'}`}>
                 <label htmlFor="pause">
-                    <span className="input__container-pause">Pause duration</span><br></br>
+                    <span className="input__container-pause">Break time</span><br></br>
                     <button type="button" onClick={decreasePauseDuration}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </button>
