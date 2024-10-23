@@ -9,7 +9,7 @@ export default function pauseView() {
     };
 
     return (
-        <div className="pauseView">
+        <div className="PauseView">
             <h1>Paused, time for a break!</h1>
             <button onClick={handleResume}>Resume</button>
         </div>

@@ -7,7 +7,7 @@
   z-index: 1;
 }
 
-.countDown__timer {
+.digital__timer {
     position: relative;
     display: flex;
     flex-direction: column;

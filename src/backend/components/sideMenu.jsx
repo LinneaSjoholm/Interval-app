@@ -1,21 +1,16 @@
-import {useState} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
+import { useNav } from './navContext';
 
-export default function (sideMenu) {
-
-    const [menuOpen, setMenuOpen] = useState(false);
+export default function SideMenu() {
+    const { menuOpen, toggleMenu } = useNav();
     const navigate = useNavigate();
-
-    const toggleMenu = () => {
-        setMenuOpen(prevState => !prevState);
-    };
 
     const handleNavigate = (path) => {
         navigate(path);
-        setMenuOpen(false);
-    }
+            toggleMenu();
+};
 
 return (
    <>
@@ -29,8 +24,8 @@ return (
             <ul>
                 <li onClick={() => handleNavigate ('/')}>Startpage</li>
                 <li onClick={() => handleNavigate ('/set-timer')}>Set timer</li>
-                <li onClick={() => handleNavigate ('/countdown')}>Digital timer</li>
-                <li onClick={() => handleNavigate ('/analog')}>Analog timer</li>
+                <li onClick={() => handleNavigate ('/digital-timer')}>Digital timer</li>
+                <li onClick={() => handleNavigate ('/analog-timer')}>Analog timer</li>
                 <li onClick={() => handleNavigate ('/text-timer')}>Text timer</li>
             </ul>
         </div>

@@ -1,0 +1,57 @@
+.endView {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #202020; /* Mörk bakgrund */
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    z-index: 9999;
+  }
+  
+  .endView h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #ff4040; /* Röd färg för att markera att tiden är slut */
+  }
+  
+  .endView button {
+    background-color: #ff4040;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  .endView button:hover {
+    background-color: #ff6161; /* Ljusare röd när musen hovrar över knappen */
+  }
+  
+  .endView .fa-bell {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    color: #ff4040; /* Röd färg för klockikonen */
+  }
+  
+  /* Små skärmar */
+  @media (max-width: 600px) {
+    .endView h1 {
+      font-size: 2rem;
+    }
+  
+    .endView button {
+      font-size: 1rem;
+      padding: 0.6rem 1.2rem;
+    }
+  
+    .endView .fa-bell {
+      font-size: 3rem;
+    }
+  }
+  

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function LoadingScreen({ img }) {
+export default function StartPage({ img }) {
 
     const navigate = useNavigate();
 
@@ -10,8 +10,8 @@ export default function LoadingScreen({ img }) {
     };
 
     return (
-        <div className="loading__screen" onClick={ onLogoClick }>
-            <img src={img} alt="logo" className="loading__screen-logo" />
+        <div className="startPage" onClick={ onLogoClick }>
+            <img src={img} alt="logo" className="startPage-logo" />
             </div>
     );
 };
