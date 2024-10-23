@@ -1,0 +1,45 @@
+.menu-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px; /* Justera avståndet mellan knapp och meny efter behov */
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px; /* Justera storleken efter behov */
+}
+
+.menu-content {
+    display: none; /* Dölj menyn som standard */
+    position: absolute;
+    top: 40px; /* Justera positionen efter behov */
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Se till att den är över andra element */
+}
+
+.menu-container:hover .menu-content {
+    display: block; /* Visa menyn när du sväva över */
+}
+
+.menu-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-content li {
+    padding: 10px 15px; /* Justera paddingen efter behov */
+}
+
+.menu-content li a {
+    text-decoration: none;
+    color: black; /* Justera färgen efter behov */
+}
+
+.menu-content li a:hover {
+    background-color: #f0f0f0; /* Färg vid hover */
+}
