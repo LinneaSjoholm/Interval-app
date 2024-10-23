@@ -1,21 +1,41 @@
-.Background__circle1,
-.Background__circle2,
-.Background__circle3,
-.Background__circle4 {
-  position: absolute;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.countdown__timer {
-    position: relative;
+.countDown__timer {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
     align-items: center;
-    height: 100%;
-    z-index: 2;
+    text-align: center;
+    gap: 30px;
+    height: 500px;
+}
+
+.countDown__timer-start-btn {
+    background-color: none;
+    color: white;
+    border: solid 1px #FF4000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.countDown__timer-abort-n-reset-btn {
+    background-color: none;
+    color: white;
+    border: solid 1px #FF4000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.countDown__timer-resume-n-pause-btn {
+    background-color: none;
+    color: white;
+    border: solid 1px #FF4000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
 .pause__container-hidden {
@@ -25,18 +45,6 @@
 }
 
 .pause__container-visible {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.1s ease;
-}
-
-.start__container-hidden {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.1s ease;
-}
-
-.start__container-visible {
     visibility: visible;
     opacity: 1;
     transition: opacity 0.1s ease;

@@ -18,14 +18,14 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
     const [alertShown, setAlertShown] = useState(false);
     const [isReset, setIsReset] = useState(false);
     const [intervalPaused, setIntervalPaused] = useState(false);
-    const [navigating, setNavigating] = useState(false); // Ny state för navigering
+    const [navigating, setNavigating] = useState(false);
     const timer = useRef(new Timer());
 
     useEffect(() => {
         const handleTargetAchieved = () => {
             if (!alertShown) {
                 setAlertShown(true);
-                setNavigating(true); // Sätt navigating till true för navigering
+                setNavigating(true);
                 if (isInterval) {
                     setIntervalPaused(true);
                     setTimeout(() => {
@@ -43,6 +43,7 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
             setCountdown(totalRemainingTime);
         };
 
+        // Starta timern med angivet värde vid mount
         timer.current.addEventListener('secondsUpdated', handleSecondsUpdated);
         timer.current.addEventListener('targetAchieved', handleTargetAchieved);
         timer.current.start({ countdown: true, startValues: { seconds: seconds } });
@@ -52,7 +53,7 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
             timer.current.removeEventListener('targetAchieved', handleTargetAchieved);
             timer.current.stop();
         };
-    }, [seconds, isPaused, intervalPaused, alertShown, isInterval, pauseDuration]);
+    }, [seconds, isInterval, pauseDuration]);
 
     const handleReset = () => {
         timer.current.stop();
@@ -61,26 +62,28 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
         setIntervalPaused(false);
         setAlertShown(false);
         setIsReset(true);
-        setNavigating(false); // Återställ navigating state
+        setNavigating(false);
     };
 
     const togglePaus = () => {
         if (isPaused) {
-            timer.current.start();
+            // Återuppta timern från den senaste tiden
+            timer.current.start({ countdown: true, startValues: { seconds: countdown } });
             setIsPaused(false);
         } else {
+            // Pausa timern
             timer.current.pause();
             setIsPaused(true);
         }
     };
 
     const handleStart = () => {
+        // Starta om timern med den aktuella tiden
         timer.current.start({ countdown: true, startValues: { seconds: countdown } });
         setIsReset(false);
         setIsPaused(false);
     };
 
-    // Villkorlig renderering för navigering
     if (navigating) {
         return <Navigate to="/end" />;
     }
@@ -102,9 +105,11 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
                 </>
             )}
 
-            <div className={`pause__container ${isPaused ? 'pause__container-visible' : 'pause__container-hidden'}`}>
-                <p>Paused. Waiting to resume..</p>
-            </div>
+            {isPaused && (
+                <div className="pause__container">
+                    <p>Paused. Waiting to resume..</p>
+                </div>
+            )}
         </div>
     );
 }

@@ -23,46 +23,28 @@ form {
     align-items: center;
     text-align: center;
     z-index: 2;
+    height: 100px;
 }
 
 .input__container-minutes {
     font-size: 2rem;
-    color: white;
+    color: var(--primary-orange);
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: 200;
+    font-weight: 300;
 }
 
-.input__container-interval {
-    font-size: 1rem;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 100;
-}
-
-.input__container-hidden {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.1s ease;
-}
-
-.input__container-visible {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.1s ease;
-}
-
-.custom-checkbox {
-    width: 15px;
-    height: 15px;
-    accent-color: #FF4000;
-    cursor: pointer;
+.input__container-pause {
+    font-size: 1.2rem;
+    color:var(--primary-white);
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    font-weight: 300;
 }
 
 .input__container-pause {
     font-size: 1rem;
-    color: white;
+    color: var(--primary-blue);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 200;
@@ -84,16 +66,20 @@ form {
     text-align: center;
 }
 
-.button__container {
-background-color: salmon;
-bottom: 0;
-}
-
 .input__container-submitbtn {
-    background-color: #FF4000;
+    background-color: none;
     color: white;
-    border: none;
+    border: solid 1px #FF4000;
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
+    text-transform: uppercase;
+}
+
+.display__minutes {
+    font-size: 2rem;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 200;
 }
