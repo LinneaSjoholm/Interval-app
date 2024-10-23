@@ -10,7 +10,7 @@ const formatTime = (time) => {
     if (seconds < 10) seconds = '0' + seconds;
 
     return `${minutes}:${seconds}`;
-}
+};
 
 export default function CountDown({ seconds, isInterval, pauseDuration }) {
     const [countdown, setCountdown] = useState(seconds);
@@ -19,6 +19,8 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
     const [isReset, setIsReset] = useState(false);
     const [intervalPaused, setIntervalPaused] = useState(false);
     const [navigating, setNavigating] = useState(false);
+    const [showSetNewTimer, setShowSetNewTimer] = useState(false);
+    const [setNewTimer, setSetNewTimer] = useState(false); // Ny state för att navigera till set timer
     const timer = useRef(new Timer());
 
     useEffect(() => {
@@ -63,6 +65,7 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
         setAlertShown(false);
         setIsReset(true);
         setNavigating(false);
+        setShowSetNewTimer(true);
     };
 
     const togglePaus = () => {
@@ -82,29 +85,41 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
         timer.current.start({ countdown: true, startValues: { seconds: countdown } });
         setIsReset(false);
         setIsPaused(false);
+        setShowSetNewTimer(false);
+    };
+
+    const handleSetNewTimer = () => {
+        setSetNewTimer(true); // Ställ in state för att navigera
     };
 
     if (navigating) {
         return <Navigate to="/end" />;
     }
 
+    if (setNewTimer) {
+        return <Navigate to="/set-timer" />;
+    }
+
     return (
         <div className="countDown__timer">
             <span>Time left <br />{formatTime(countdown)}</span>
-
+    
             {isReset && (
                 <div className={`start__container ${isReset ? 'start__container-visible' : 'start__container-hidden'}`}>
                     <button className="countDown__timer-start-btn" onClick={handleStart}>Start timer</button>
+                    {showSetNewTimer && (
+                        <button className="countDown__timer-set-new-timer-btn" onClick={handleSetNewTimer}>Set New Timer</button>
+                    )}
                 </div>
             )}
-
+    
             {!isReset && (
                 <>
                     <button className="countDown__timer-abort-n-reset-btn" onClick={handleReset}>Abort timer and reset</button>
                     <button className="countDown__timer-resume-n-pause-btn" onClick={togglePaus}>{isPaused ? "Resume" : "Pause"}</button>
                 </>
             )}
-
+    
             {isPaused && (
                 <div className="pause__container">
                     <p>Paused. Waiting to resume..</p>
@@ -112,4 +127,4 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
             )}
         </div>
     );
-}
+};    

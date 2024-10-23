@@ -4,15 +4,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './App.css'
 import './frontend/setTimer.css'
 import './frontend/digitalTimer.css'
-import './frontend/analogTimer.css'
-import './frontend/pauseView.css'
 import './frontend/endView.css'
+import './frontend/menu.css'
 import img from './img/logotyp.png'
 
 import StartPage from './backend/components/startPage'
+import Menu from './backend/components/menu'
 import SetTimer from './backend/components/setTimer'
 import DigitalTimer from './backend/components/digitalTimer'
-import PauseView from './backend/components/pauseView'
+import AnalogTimer from './backend/components/analogTimer'
 import EndView from './backend/components/endView'
 
 
@@ -25,17 +25,18 @@ function App() {
 
   return (
     <Router>
-
     <div className="View">
       <div className="View__iphone">
         <div className="View__iphone-screen">
-          <div className="View__iphone-top"></div>
+          <div className="View__iphone-top">
+            <Menu />
+          </div>
 
       <Routes>
         <Route path="/" element={<StartPage img={img} />} />
         <Route path="/set-timer" element={<SetTimer onStart={handleStartTimer} />} />
         <Route path="/digital-timer" element={<DigitalTimer {...timerProps} />} />
-        <Route path="/pause" element={<PauseView />} />
+        <Route path="/analog-timer" element={<AnalogTimer {...timerProps} />} />
         <Route path="/end" element={<EndView />} />
       </Routes>
 

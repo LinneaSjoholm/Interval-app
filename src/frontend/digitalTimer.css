@@ -18,6 +18,16 @@
     text-transform: uppercase;
 }
 
+.countDown__timer-set-new-timer-btn {
+    background-color: none;
+    color: white;
+    border: solid 1px #FF4000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
 .countDown__timer-abort-n-reset-btn {
     background-color: none;
     color: white;
@@ -37,6 +47,13 @@
     cursor: pointer;
     text-transform: uppercase;
 }
+
+.start__container {
+    display: flex; /* Gör att barnen visas i rad */
+    flex-direction: column; /* Gör att knapparna visas i en kolumn */
+    gap: 10px; /* Justera gapet mellan knapparna */
+}
+
 
 .pause__container-hidden {
     visibility: hidden;

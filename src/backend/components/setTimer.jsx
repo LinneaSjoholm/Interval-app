@@ -2,15 +2,16 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import timer from 'easytimer.js';
+import Timer from 'easytimer.js';
 
 export default function SetTimer({ onStart }) {
-    const timeRef = useRef(new timer());
+    const timeRef = useRef(new Timer());
     const navigate = useNavigate();
 
     const [minutes, setMinutes] = useState(0);
     const [isInterval, setIsInterval] = useState(false);
     const [pauseDuration, setPauseDuration] = useState(1);
+    const [timerType, setTimerType] = useState('digital');
 
     useEffect(() => {
         const timer = timeRef.current;
@@ -53,10 +54,10 @@ export default function SetTimer({ onStart }) {
             }, totalSeconds * 1000);
         }
 
-        
         onStart(totalSeconds, isInterval, parsedPauseDuration);
+        
         navigate('/digital-timer');
-    };
+    }; 
 
     const increaseMinutes = () => {
         setMinutes((prev) => prev + 1);
