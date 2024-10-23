@@ -53,7 +53,7 @@ export default function SetTimer({ onStart }) {
             }, totalSeconds * 1000);
         }
 
-        // Skicka alltid sekunder till onStart
+        
         onStart(totalSeconds, isInterval, parsedPauseDuration);
         navigate('/digital-timer');
     };
@@ -82,40 +82,15 @@ export default function SetTimer({ onStart }) {
                     <button type="button" onClick={decreaseMinutes}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </button>
-                    <span>{minutes}</span>
+                    <span className="display__minutes">{minutes}</span>
                     <button type="button" onClick={increaseMinutes}>
                         <FontAwesomeIcon icon={faChevronRight} />
                     </button>
                 </label>
             </div>
 
-            <div className="input__container">
-                <label htmlFor="interval">
-                    <span className="input__container-interval">Interval</span><br />
-                    <input
-                        type="checkbox"
-                        checked={isInterval}
-                        onChange={() => setIsInterval(!isInterval)}
-                        className="custom-checkbox"
-                    />
-                </label>
-            </div>
-
-            <div className={`input__container ${isInterval ? 'input__container-visible' : 'input__container-hidden'}`}>
-                <label htmlFor="pause">
-                    <span className="input__container-pause">Pause duration</span><br />
-                    <button type="button" onClick={decreasePauseDuration}>
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </button>
-                    <span>{pauseDuration}</span>
-                    <button type="button" onClick={increasePauseDuration}>
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
-                </label>
-            </div>
-
             <div className="button__container">
-                <button className="input__container-submitbtn" type="submit">Start</button>
+                <button className="input__container-submitbtn" type="submit">Start timer</button>
             </div>
         </form>
     );
