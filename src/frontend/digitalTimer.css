@@ -1,0 +1,43 @@
+.Background__circle1,
+.Background__circle2,
+.Background__circle3,
+.Background__circle4 {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.countdown__timer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    height: 100%;
+    z-index: 2;
+}
+
+.pause__container-hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.pause__container-visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.1s ease;
+}
+
+.start__container-hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+}
+
+.start__container-visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.1s ease;
+}
