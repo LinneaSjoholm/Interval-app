@@ -79,19 +79,27 @@ export default function SetTimer({ onStart }) {
         <form onSubmit={handleSubmit}>
             <div className="input__container">
                 <label htmlFor="minutes">
-                    <span className="input__container-minutes">Minutes</span><br />
+                    <div className="icon-container">
                     <button type="button" onClick={decreaseMinutes}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </button>
+                    
                     <span className="display__minutes">{minutes}</span>
+                    
                     <button type="button" onClick={increaseMinutes}>
                         <FontAwesomeIcon icon={faChevronRight} />
                     </button>
+                    </div>
+                    <br />
+                    
+                    <span className="input__container-minutes">Minutes</span>
                 </label>
-            </div>
+                
+            
 
             <div className="button__container">
                 <button className="input__container-submitbtn" type="submit">Start timer</button>
+            </div>
             </div>
         </form>
     );
