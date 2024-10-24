@@ -6,6 +6,7 @@ import './frontend/setTimer.css'
 import './frontend/digitalTimer.css'
 import './frontend/endView.css'
 import './frontend/menu.css'
+import './frontend/resetView.css'
 import img from './img/logotyp.png'
 
 import StartPage from './backend/components/startPage'

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Timer from 'easytimer.js';
 import { Navigate } from "react-router-dom";
+import ResetView from "./resetView"; // Importera ResetView
 
 const formatTime = (time) => {
     let minutes = Math.floor(time / 60);
@@ -45,7 +46,6 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
             setCountdown(totalRemainingTime);
         };
 
-        // Starta timern med angivet värde vid mount
         timer.current.addEventListener('secondsUpdated', handleSecondsUpdated);
         timer.current.addEventListener('targetAchieved', handleTargetAchieved);
         timer.current.start({ countdown: true, startValues: { seconds: seconds } });
@@ -70,11 +70,9 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
 
     const togglePaus = () => {
         if (isPaused) {
-            
             timer.current.start({ countdown: true, startValues: { seconds: countdown } });
             setIsPaused(false);
         } else {
-            
             timer.current.pause();
             setIsPaused(true);
         }
@@ -101,29 +99,28 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
 
     return (
         <div className="countDown__timer">
-            <span className="countDown__time">{formatTime(countdown)}</span>
-    
-            {isReset && (
-                <div className={`start__container ${isReset ? 'start__container-visible' : 'start__container-hidden'}`}>
-                    <button className="countDown__timer-start-btn" onClick={handleStart}>Start timer</button>
-                    {showSetNewTimer && (
-                        <button className="countDown__timer-set-new-timer-btn" onClick={handleSetNewTimer}>Set New Timer</button>
+            <div className="countDown__time">{formatTime(countdown)}</div>
+
+            {isReset ? ( 
+                <ResetView
+                    time={formatTime(countdown)} 
+                    onSetNewTimer={() => setSetNewTimer(true)} 
+                />
+            ) : (
+                <>
+
+                    <div className="button__group">
+                        <button className="countDown__timer-abort-n-reset-btn" onClick={handleReset}>Abort timer and reset</button>
+                        <button className="countDown__timer-resume-n-pause-btn" onClick={togglePaus}>{isPaused ? "Resume" : "Pause"}</button>
+                    </div>
+
+                    {isPaused && (
+                        <div className="pause__container">
+                            <p>Paused. Waiting to resume..</p>
+                        </div>
                     )}
-                </div>
-            )}
-    
-            {!isReset && (
-                <div className="button__group">
-                    <button className="countDown__timer-abort-n-reset-btn" onClick={handleReset}>Abort timer and reset</button>
-                    <button className="countDown__timer-resume-n-pause-btn" onClick={togglePaus}>{isPaused ? "Resume" : "Pause"}</button>
-                </div>
-            )}
-    
-            {isPaused && (
-                <div className="pause__container">
-                    <p>Paused. Waiting to resume..</p>
-                </div>
+                </>
             )}
         </div>
     );
-};    
+}

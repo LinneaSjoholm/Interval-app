@@ -5,7 +5,6 @@
     align-items: center;
     row-gap: 30px;
     height: 100%;
-    width: 100%;
     margin: 0;
     padding: 0;
 }
@@ -16,7 +15,7 @@
     text-transform: lowercase;
     letter-spacing: 2px;
     font-weight: 200;
-    margin-top: 0 auto;
+    margin-top: 30px;
 }
 
 .countDown__timer-start-btn, 
