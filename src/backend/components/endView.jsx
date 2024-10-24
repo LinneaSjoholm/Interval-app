@@ -13,7 +13,7 @@ export default function EndView() {
     return (
         <div className="endView">
             <FontAwesomeIcon icon={faBell} />
-            <h1>Times up! Good job</h1>
+            <p className="endView-p">Times up!</p><br /> 
             <button onClick={handleReset}>Set new timer</button>
         </div>
     )

@@ -17,7 +17,13 @@ export default function AnalogTimer({ seconds }) {
             setCountdown(totalRemainingTime);
         };
 
+        const handleTargetAchieved = () => {
+            setNavigating(true);
+        };
+
         timer.current.addEventListener('secondsUpdated', handleSecondsUpdated);
+        timer.current.addEventListener('targetAchieved', handleTargetAchieved);
+        
         timer.current.start({ countdown: true, startValues: { seconds: seconds } });
 
         return () => {
@@ -94,7 +100,6 @@ export default function AnalogTimer({ seconds }) {
             <div className="button__group">
                 {isReset ? (
                     <>
-                        <button className="countDown__timer-start-btn" onClick={handleStart}>Start Timer</button>
                         <button className="countDown__timer-set-new-timer-btn" onClick={handleSetNewTimer}>Set New Timer</button>
                     </>
                 ) : (

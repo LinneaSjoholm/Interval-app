@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import Timer from 'easytimer.js';
 import { Navigate } from "react-router-dom";
-import ResetView from "./resetView"; // Importera ResetView
+import ResetView from "./resetView";
 
 const formatTime = (time) => {
     let minutes = Math.floor(time / 60);
@@ -104,6 +104,7 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
             {isReset ? ( 
                 <ResetView
                     time={formatTime(countdown)} 
+                    countdown = {() => setCountdown(countdown)}
                     onSetNewTimer={() => setSetNewTimer(true)} 
                 />
             ) : (
