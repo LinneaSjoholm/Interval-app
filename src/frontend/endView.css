@@ -26,17 +26,9 @@
     font-size: 1rem;
   }
   
-  .endView .fa-bell {
+  .fa-bell {
     font-size: 6rem;
     margin-bottom: 1.5rem;
     color: var(--primary-blue);
     animation: swing 1s ease-in-out infinite;
   }
-
-  @keyframes swing {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(10deg); }
-    50% { transform: rotate(0deg); }
-    75% { transform: rotate(-10deg); }
-    100% { transform: rotate(0deg); }
-}

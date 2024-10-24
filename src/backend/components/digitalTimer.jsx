@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import Timer from 'easytimer.js';
 import { Navigate } from "react-router-dom";
 import ResetView from "./resetView";
+import { TimerContext } from "./timerContext";
+import Menu from "./menu";
+import { motion } from "framer-motion";
 
 const formatTime = (time) => {
     let minutes = Math.floor(time / 60);
@@ -98,7 +101,16 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
     }
 
     return (
+
+       
         <div className="countDown__timer">
+            <Menu />
+            <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: 50 }}
+            transition={{ duration: 0.5 }}
+        >
             <div className="countDown__time">{formatTime(countdown)}</div>
 
             {isReset ? ( 
@@ -121,6 +133,8 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
 
                 </>
             )}
+            </motion.div>
         </div>
+        
     );
 }

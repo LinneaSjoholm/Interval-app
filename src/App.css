@@ -58,16 +58,3 @@
   bottom: 0;
 }
 
-img {
-  max-width: 60%;
-  height: auto;
-  z-index: 2;
-  position: relative;
-  cursor: pointer;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}

@@ -1,28 +1,43 @@
 .menu-container {
-    position: relative;
-    display: inline-block;
-    margin-right: 20px; /* Justera avståndet mellan knapp och meny efter behov */
+    position: absolute; /* Absolut positionering för att placera den i det övre vänstra hörnet */
+    top: 10px; /* Lite avstånd från toppen */
+    left: 10px; /* Lite avstånd från vänster */
+    z-index: 100; /* Se till att den är över andra element */
 }
 
 .menu-button {
+    position: absolute;
+    left: 0;
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 24px; /* Justera storleken efter behov */
+    font-size: 1.2rem;
+    color: var(--primary-white);
+    margin-top: 20px;
+    z-index: 101;
 }
 
 .menu-content {
-    display: none; /* Dölj menyn som standard */
-    position: absolute;
-    top: 40px; /* Justera positionen efter behov */
-    right: 0;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Se till att den är över andra element */
+    position: relative; 
+    top: 20px; /* Flytta menyn ned 100px */
+    left: auto; /* Flytta menyn 50px från vänster */
+    width: 315px; /* Justera bredden om nödvändigt */
+    height: 250px; /* Justera höjden om nödvändigt */
+    background-color: var(--primary-dark-grey); 
+    z-index: 99; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    opacity: 0; 
 }
 
-.menu-container:hover .menu-content {
-    display: block; /* Visa menyn när du sväva över */
+.menu-content.show {
+    pointer-events: auto; /* Tillåt musinteraktion när den är öppen */
+    opacity: 1; /* Gör den synlig */
 }
 
 .menu-content ul {
@@ -37,9 +52,16 @@
 
 .menu-content li a {
     text-decoration: none;
-    color: black; /* Justera färgen efter behov */
+    font-weight: 200;
+    color: var(--primary-white);
+    font-size: 1.4rem;
+    text-transform: lowercase;
 }
 
 .menu-content li a:hover {
-    background-color: #f0f0f0; /* Färg vid hover */
+    color: var(--primary-blue);
+}
+
+.menu-icon {
+    color: var(--primary-orange);
 }
