@@ -108,17 +108,16 @@ export default function CountDown({ seconds, isInterval, pauseDuration }) {
                 />
             ) : (
                 <>
+                    <div className={`pause__container ${isPaused ? 'pause__container-visible' : ''}`}>
+                        <p>Paused. Waiting to resume..</p>
+                    </div>
 
                     <div className="button__group">
                         <button className="countDown__timer-abort-n-reset-btn" onClick={handleReset}>Abort timer and reset</button>
                         <button className="countDown__timer-resume-n-pause-btn" onClick={togglePaus}>{isPaused ? "Resume" : "Pause"}</button>
                     </div>
 
-                    {isPaused && (
-                        <div className="pause__container">
-                            <p>Paused. Waiting to resume..</p>
-                        </div>
-                    )}
+
                 </>
             )}
         </div>

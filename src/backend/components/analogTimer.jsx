@@ -33,7 +33,6 @@ export default function AnalogTimer({ seconds }) {
 
     const { secondsAngle } = calculateRotation(countdown);
 
-   
     const handleStart = () => {
         timer.current.start({ countdown: true, startValues: { seconds: countdown } });
         setIsPaused(false);
@@ -61,7 +60,6 @@ export default function AnalogTimer({ seconds }) {
         setSetNewTimer(true);
     };
 
-    
     if (navigating) {
         return <Navigate to="/end" />;
     }
@@ -71,11 +69,13 @@ export default function AnalogTimer({ seconds }) {
     }
 
     return (
-        <div className="analog-timer">
+        <div className="countDown__timer">
+            <div className="countDown__time">
+                <span>{`${Math.floor(countdown / 60)}:${countdown % 60 < 10 ? '0' : ''}${countdown % 60}`}</span>
+            </div>
+
             <svg width="200" height="200" viewBox="0 0 200 200">
-                
-                <circle cx="100" cy="100" r="90" stroke="black" strokeWidth="3" fill="white" />
-                
+                <circle cx="100" cy="100" r="90" stroke="transparent" strokeWidth="3" fill="transparent" />
                 <line 
                     x1="100" 
                     y1="100" 
@@ -86,29 +86,24 @@ export default function AnalogTimer({ seconds }) {
                     style={{ transform: `rotate(${secondsAngle}deg)`, transformOrigin: '100px 100px' }} 
                 />
             </svg>
-            <div>
-                <span>{`Time left: ${Math.floor(countdown / 60)}:${countdown % 60 < 10 ? '0' : ''}${countdown % 60}`}</span>
+
+            <div className={`pause__container ${isPaused ? 'pause__container-visible' : ''}`}>
+                <p>Paused. Waiting to resume..</p>
             </div>
 
-            <div className="analog__timer">
-            {isReset ? (
-                <div className="analog__timer-button-container">
-                    <button className="analog__timer-start-btn" onClick={handleStart}>Start Timer</button>
-                    <button className="analog__timer-set-new-timer-btn" onClick={handleSetNewTimer}>Set New Timer</button>
-                </div>
-            ) : (
-                <div className="analog__timer-button-container">
-                    <button className="analog__timer-abort-n-reset-btn" onClick={handleReset}>Abort Timer and Reset</button>
-                    <button className="analog__timer-resume-n-pause-btn" onClick={togglePause}>{isPaused ? "Resume" : "Pause"}</button>
-                </div>
-            )}
-
-            {isPaused && (
-                <div className="pause__container">
-                    <p>Paused. Waiting to resume..</p>
-                </div>
-            )}
-        </div>
+            <div className="button__group">
+                {isReset ? (
+                    <>
+                        <button className="countDown__timer-start-btn" onClick={handleStart}>Start Timer</button>
+                        <button className="countDown__timer-set-new-timer-btn" onClick={handleSetNewTimer}>Set New Timer</button>
+                    </>
+                ) : (
+                    <>
+                        <button className="countDown__timer-abort-n-reset-btn" onClick={handleReset}>Abort Timer and Reset</button>
+                        <button className="countDown__timer-resume-n-pause-btn" onClick={togglePause}>{isPaused ? "Resume" : "Pause"}</button>
+                    </>
+                )}
+            </div>
         </div>
     );
 }
