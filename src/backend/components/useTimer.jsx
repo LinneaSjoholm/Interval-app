@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Timer from 'easytimer.js';
 
-export default function useTimer() {
+export default function useTimer(){
   const [timerProps, setTimerProps] = useState({});
   const [countdown, setCountdown] = useState(0);
   const [isPaused, setIsPaused] = useState(false);

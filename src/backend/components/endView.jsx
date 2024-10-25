@@ -13,23 +13,24 @@ export default function EndView() {
 
     return (
         <motion.div 
-        className="endView"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}>
+            className="endView"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}>
 
-        <motion.div 
-            animate={{ rotate: [0, 10, 0, -10, 0] }} 
-            transition={{ repeat: Infinity, duration: 1 }}>
-            <FontAwesomeIcon 
-            icon={faBell}
-            className="fa-bell" />
+            <motion.div 
+                animate={{ rotate: [0, 10, 0, -10, 0] }} 
+                transition={{ repeat: Infinity, duration: 1 }}>
+                <FontAwesomeIcon 
+                    icon={faBell}
+                    className="fa-bell" />
+            </motion.div>
+            <p className="endView-p">Times up!</p><br />
+            <motion.button 
+                onClick={handleReset}
+                aria-label="Set new timer">
+                Set new timer
+            </motion.button>
         </motion.div>
-        <p className="endView-p">Times up!</p><br />
-        <motion.button 
-            onClick={handleReset}>
-            Set new timer
-        </motion.button>
-        </motion.div>
-    )
+    );
 }

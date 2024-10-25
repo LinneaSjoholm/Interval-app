@@ -1,6 +1,5 @@
 import Menu from './menu';
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 
 export default function DigitalTimer({ countdown, isPaused, onPauseResume, onReset }) {
   const formatTime = (time) => {
@@ -12,7 +11,7 @@ export default function DigitalTimer({ countdown, isPaused, onPauseResume, onRes
   return (
     <div className="countDown__timer">
       <Menu />
-      <motion.div
+      <motion.div 
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: 50 }}
@@ -20,7 +19,6 @@ export default function DigitalTimer({ countdown, isPaused, onPauseResume, onRes
       >
         <div className="countDown__time">{formatTime(countdown)}</div>
 
-        {/* Lägg till pausmeddelande här */}
         <motion.div 
           className="pause__container"
           initial={{ opacity: 0, y: -20 }}

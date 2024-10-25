@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 export default function DigitalTimer({ countdown, isPaused, onPauseResume, onReset }) {
   const [secondsAngle, setSecondsAngle] = useState(0);
 
-  // Uppdaterar vinkeln för sekunderna beroende på nedräkningstiden
   useEffect(() => {
     const totalSeconds = countdown;
     const secondsPassed = totalSeconds % 60;
@@ -42,8 +41,8 @@ export default function DigitalTimer({ countdown, isPaused, onPauseResume, onRes
             stroke="red" 
             strokeWidth="2"
             style={{ 
-              transformOrigin: '100px 100px', // Ursprung för rotationen
-              transform: `rotate(${secondsAngle}deg)` // Rotera linjen baserat på tiden
+              transformOrigin: '100px 100px',
+              transform: `rotate(${secondsAngle}deg)`
             }} 
           />
         </svg>
