@@ -17,6 +17,7 @@ const RoutesComponent = () => {
     timerProps,
     countdown,
     isPaused,
+    hasEnded,
     handleStartTimer,
     handlePauseResume,
     handleReset,
@@ -24,14 +25,17 @@ const RoutesComponent = () => {
 
   const handleAbortAndReset = () => {
     handleReset();
-    setShowResetView(true);
     navigate('/reset');
   };
 
   const handleSetNewTimer = () => {
-    setShowResetView(false);
+    handleReset();
     navigate('/set-timer');
   };
+
+  if(hasEnded) {
+    return <EndView onSetNewTimer={handleSetNewTimer} />;
+    }
 
   return (
     <>
@@ -60,9 +64,10 @@ const RoutesComponent = () => {
             />
           }
         />
-        <Route path="/end" element={<EndView />} />
-        <Route path="/reset" element={<ResetView onSetNewTimer={handleSetNewTimer} />} /> {/* New Route for Reset */}
+        <Route path="/end" element={<EndView onSetNewTimer={handleSetNewTimer} />} />
+        <Route path="/reset" element={<ResetView onSetNewTimer={handleSetNewTimer} />} />
       </Routes>
+
     </>
   );
 };

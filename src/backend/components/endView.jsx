@@ -1,16 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 
-export default function EndView() {
-    const navigate = useNavigate();
-
-    const handleReset = () => {
-        navigate('/set-timer');
-    };
-
+export default function EndView({ onSetNewTimer }) {
     return (
         <motion.div 
             className="endView"
@@ -27,7 +20,7 @@ export default function EndView() {
             </motion.div>
             <p className="endView-p">Times up!</p><br />
             <motion.button 
-                onClick={handleReset}
+                onClick={onSetNewTimer}
                 aria-label="Set new timer">
                 Set new timer
             </motion.button>
