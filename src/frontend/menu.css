@@ -1,8 +1,8 @@
 .menu-container {
-    position: absolute; /* Absolut positionering för att placera den i det övre vänstra hörnet */
-    top: 10px; /* Lite avstånd från toppen */
-    left: 10px; /* Lite avstånd från vänster */
-    z-index: 100; /* Se till att den är över andra element */
+    position: absolute;
+    top: 10px; 
+    left: 10px; 
+    z-index: 100; 
 }
 
 .menu-button {
@@ -19,10 +19,10 @@
 
 .menu-content {
     position: relative; 
-    top: 20px; /* Flytta menyn ned 100px */
-    left: auto; /* Flytta menyn 50px från vänster */
-    width: 315px; /* Justera bredden om nödvändigt */
-    height: 250px; /* Justera höjden om nödvändigt */
+    top: 20px;
+    left: auto; 
+    width: 315px; 
+    height: 250px; 
     background-color: var(--primary-dark-grey); 
     z-index: 99; 
     display: flex; 
@@ -36,8 +36,8 @@
 }
 
 .menu-content.show {
-    pointer-events: auto; /* Tillåt musinteraktion när den är öppen */
-    opacity: 1; /* Gör den synlig */
+    pointer-events: auto; 
+    opacity: 1;
 }
 
 .menu-content ul {
@@ -47,7 +47,7 @@
 }
 
 .menu-content li {
-    padding: 10px 15px; /* Justera paddingen efter behov */
+    padding: 10px 15px; 
 }
 
 .menu-content li a {

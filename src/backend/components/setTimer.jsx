@@ -41,7 +41,6 @@ export default function SetTimer({ onStart }) {
             return;
         }
 
-        // Omvandla minuter till sekunder
         const totalSeconds = parsedMinutes * 60;
 
         timeRef.current.start({ countdown: true, startValues: { seconds: totalSeconds } });

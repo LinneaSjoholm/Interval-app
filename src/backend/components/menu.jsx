@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default function Menu() {
-    const [isOpen, setIsOpen] = useState(false); // Hantera menyns öppning
+    const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
-        setIsOpen(!isOpen); // Växla mellan öppen/stängd
+        setIsOpen(!isOpen);
     };
 
     return (

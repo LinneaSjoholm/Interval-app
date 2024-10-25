@@ -1,140 +1,44 @@
-import { useState, useEffect, useRef } from "react";
-import Timer from 'easytimer.js';
-import { Navigate } from "react-router-dom";
-import ResetView from "./resetView";
-import { TimerContext } from "./timerContext";
-import Menu from "./menu";
-import { motion } from "framer-motion";
+import Menu from './menu';
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
-const formatTime = (time) => {
-    let minutes = Math.floor(time / 60);
-    let seconds = Math.floor(time % 60);
-
-    if (minutes < 10) minutes = '0' + minutes;
-    if (seconds < 10) seconds = '0' + seconds;
-
+export default function DigitalTimer({ countdown, isPaused, onPauseResume, onReset }) {
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+    const seconds = Math.floor(time % 60).toString().padStart(2, '0');
     return `${minutes}:${seconds}`;
-};
+  };
 
-export default function CountDown({ seconds, isInterval, pauseDuration }) {
-    const [countdown, setCountdown] = useState(seconds);
-    const [isPaused, setIsPaused] = useState(false);
-    const [alertShown, setAlertShown] = useState(false);
-    const [isReset, setIsReset] = useState(false);
-    const [intervalPaused, setIntervalPaused] = useState(false);
-    const [navigating, setNavigating] = useState(false);
-    const [showSetNewTimer, setShowSetNewTimer] = useState(false);
-    const [setNewTimer, setSetNewTimer] = useState(false);
-    const timer = useRef(new Timer());
+  return (
+    <div className="countDown__timer">
+      <Menu />
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: 50 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="countDown__time">{formatTime(countdown)}</div>
 
-    useEffect(() => {
-        const handleTargetAchieved = () => {
-            if (!alertShown) {
-                setAlertShown(true);
-                setNavigating(true);
-                if (isInterval) {
-                    setIntervalPaused(true);
-                    setTimeout(() => {
-                        setIntervalPaused(false);
-                        setAlertShown(false);
-                        timer.current.start({ countdown: true, startValues: { seconds: seconds } });
-                    }, pauseDuration * 1000);
-                }
-            }
-        };
-
-        const handleSecondsUpdated = () => {
-            const timeValues = timer.current.getTimeValues();
-            const totalRemainingTime = timeValues.minutes * 60 + timeValues.seconds;
-            setCountdown(totalRemainingTime);
-        };
-
-        timer.current.addEventListener('secondsUpdated', handleSecondsUpdated);
-        timer.current.addEventListener('targetAchieved', handleTargetAchieved);
-        timer.current.start({ countdown: true, startValues: { seconds: seconds } });
-
-        return () => {
-            timer.current.removeEventListener('secondsUpdated', handleSecondsUpdated);
-            timer.current.removeEventListener('targetAchieved', handleTargetAchieved);
-            timer.current.stop();
-        };
-    }, [seconds, isInterval, pauseDuration]);
-
-    const handleReset = () => {
-        timer.current.stop();
-        setCountdown(seconds);
-        setIsPaused(false);
-        setIntervalPaused(false);
-        setAlertShown(false);
-        setIsReset(true);
-        setNavigating(false);
-        setShowSetNewTimer(true);
-    };
-
-    const togglePaus = () => {
-        if (isPaused) {
-            timer.current.start({ countdown: true, startValues: { seconds: countdown } });
-            setIsPaused(false);
-        } else {
-            timer.current.pause();
-            setIsPaused(true);
-        }
-    };
-
-    const handleStart = () => {
-        timer.current.start({ countdown: true, startValues: { seconds: countdown } });
-        setIsReset(false);
-        setIsPaused(false);
-        setShowSetNewTimer(false);
-    };
-
-    const handleSetNewTimer = () => {
-        setSetNewTimer(true);
-    };
-
-    if (navigating) {
-        return <Navigate to="/end" />;
-    }
-
-    if (setNewTimer) {
-        return <Navigate to="/set-timer" />;
-    }
-
-    return (
-
-       
-        <div className="countDown__timer">
-            <Menu />
-            <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 50 }}
-            transition={{ duration: 0.5 }}
+        {/* Lägg till pausmeddelande här */}
+        <motion.div 
+          className="pause__container"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: isPaused ? 1 : 0, y: isPaused ? 0 : -20 }}
+          transition={{ duration: 0.5 }}
         >
-            <div className="countDown__time">{formatTime(countdown)}</div>
+          <p>Paused. Waiting to resume..</p>
+        </motion.div>
 
-            {isReset ? ( 
-                <ResetView
-                    time={formatTime(countdown)} 
-                    countdown = {() => setCountdown(countdown)}
-                    onSetNewTimer={() => setSetNewTimer(true)} 
-                />
-            ) : (
-                <>
-                    <div className={`pause__container ${isPaused ? 'pause__container-visible' : ''}`}>
-                        <p>Paused. Waiting to resume..</p>
-                    </div>
-
-                    <div className="button__group">
-                        <button className="countDown__timer-abort-n-reset-btn" onClick={handleReset}>Abort timer and reset</button>
-                        <button className="countDown__timer-resume-n-pause-btn" onClick={togglePaus}>{isPaused ? "Resume" : "Pause"}</button>
-                    </div>
-
-
-                </>
-            )}
-            </motion.div>
+        <div className="button__group">
+          <button className="countDown__timer-abort-n-reset-btn" onClick={onReset}>
+            Abort timer and reset
+          </button>
+          <button className="countDown__timer-resume-n-pause-btn" onClick={onPauseResume}>
+            {isPaused ? 'Resume' : 'Pause'}
+          </button>
         </div>
-        
-    );
+      </motion.div>
+    </div>
+  );
 }
