@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default function Menu() {
-    
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <div className="menu-container">
-            <button className="menu-btn">
-                <FontAwesomeIcon icon={faBars} />
+            <button className="menu-button" onClick={toggleMenu}>
+                <FontAwesomeIcon 
+                icon={isOpen ? faTimes : faBars} 
+                size="lg"
+                className="menu-icon" />
             </button>
-
-            <div className="menu-content">
+            
+            <div className={`menu-content ${isOpen ? 'show' : ''}`}>
                 <ul>
                     <li><Link to="/digital-timer">Digital Timer</Link></li>
                     <li><Link to="/analog-timer">Analog Timer</Link></li>
                 </ul>
             </div>
         </div>
-    )
+    );
 }

@@ -3,66 +3,65 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    gap: 30px;
-    height: 500px;
+    height: 70%;
+    row-gap: 10px;
+    margin: 0;
+    padding: 0;
 }
 
-.countDown__timer-start-btn {
+.countDown__time {
+    font-size: 6rem;
+    color: var(--primary-blue);
+    text-transform: lowercase;
+    letter-spacing: 2px;
+    font-weight: 200;
+    margin-top: 30px;
+}
+
+.countDown__timer-start-btn, 
+.countDown__timer-set-new-timer-btn,
+.countDown__timer-abort-n-reset-btn,
+.countDown__timer-resume-n-pause-btn
+ {
     background-color: none;
     color: white;
-    border: solid 1px #FF4000;
+    border: solid 1px var(--primary-orange);
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
     text-transform: uppercase;
 }
 
-.countDown__timer-set-new-timer-btn {
-    background-color: none;
-    color: white;
-    border: solid 1px #FF4000;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-.countDown__timer-abort-n-reset-btn {
-    background-color: none;
-    color: white;
-    border: solid 1px #FF4000;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-.countDown__timer-resume-n-pause-btn {
-    background-color: none;
-    color: white;
-    border: solid 1px #FF4000;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-transform: uppercase;
+.button__group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .start__container {
-    display: flex; /* Gör att barnen visas i rad */
-    flex-direction: column; /* Gör att knapparna visas i en kolumn */
-    gap: 10px; /* Justera gapet mellan knapparna */
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
 }
 
+.pause__container {
+    color: var(--primary-orange);
+    text-transform: lowercase;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
 .pause__container-hidden {
     visibility: hidden;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.1s ease;
 }
 
 .pause__container-visible {
-    visibility: visible;
     opacity: 1;
-    transition: opacity 0.1s ease;
+    transform: translateY(0);
 }
+
+
