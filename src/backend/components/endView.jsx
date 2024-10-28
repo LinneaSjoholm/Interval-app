@@ -14,11 +14,14 @@ export default function EndView({ onSetNewTimer }) {
             <motion.div 
                 animate={{ rotate: [0, 10, 0, -10, 0] }} 
                 transition={{ repeat: Infinity, duration: 1 }}>
+                
                 <FontAwesomeIcon 
                     icon={faBell}
                     className="fa-bell" />
             </motion.div>
+            
             <p className="endView-p">Times up!</p><br />
+            
             <motion.button 
                 onClick={onSetNewTimer}
                 aria-label="Set new timer">

@@ -27,6 +27,7 @@ export default function DigitalTimer({ countdown, isPaused, onPauseResume, onRes
         exit={{ opacity: 0, x: 50 }}
         transition={{ duration: 0.5 }}
       >
+
         <div className="countDown__time">
           <span>{formatTime(countdown)}</span>
         </div>
@@ -57,11 +58,14 @@ export default function DigitalTimer({ countdown, isPaused, onPauseResume, onRes
         </motion.div>
 
         <div className="button__group">
+          
           <button className="countDown__timer-abort-n-reset-btn" onClick={onReset}>Abort Timer and Reset</button>
           <button className="countDown__timer-resume-n-pause-btn" onClick={onPauseResume}>
             {isPaused ? "Resume" : "Pause"}
           </button>
+          
         </div>
+
       </motion.div>
     </div>
   );

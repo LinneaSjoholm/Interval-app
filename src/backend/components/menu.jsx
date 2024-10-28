@@ -18,6 +18,7 @@ export default function Menu() {
                 size="lg"
                 className="menu-icon" />
             </button>
+            
             <div className={`menu-content ${isOpen ? 'show' : ''}`}>
                 <ul>
                     <li><Link to="/digital-timer">Digital Timer</Link></li>

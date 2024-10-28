@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
 import RoutesComponent from './routes/routes';
-import './App.css';
+import './frontend/App.css';
 import './frontend/setTimer.css';
 import './frontend/digitalTimer.css';
 import './frontend/endView.css';
